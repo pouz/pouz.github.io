@@ -1,0 +1,24 @@
+{
+  "equipment": [
+    {
+      "name": "LPKF P6060",
+      "imageUrl": "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=300&q=80"
+    },
+    {
+      "name": "Hirox KH-8700 (검사장비)",
+      "imageUrl": "https://images.unsplash.com/photo-1576086213369-97a306d36557?auto=format&fit=crop&w=300&q=80"
+    },
+    {
+      "name": "TANNLIN T11 LP LASER & Autoloader",
+      "imageUrl": "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&w=300&q=80"
+    },
+    {
+      "name": "NC 설비",
+      "imageUrl": "https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=300&q=80"
+    },
+    {
+      "name": "LPKF MicroLine UV LASER",
+      "imageUrl": "https://images.unsplash.com/photo-1563770660941-20978e870e26?auto=format&fit=crop&w=300&q=80"
+    }
+  ]
+}

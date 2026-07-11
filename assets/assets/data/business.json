@@ -1,0 +1,64 @@
+{
+  "divisions": [
+    {
+      "id": "01",
+      "title": "메탈마스크 사업부",
+      "details": [
+        "Metal Mask / 설계 및 제작",
+        "3D Nano Coating 표면처리",
+        "COB Mask 특수 단차 제작",
+        "10mm / 30mm 슬림 프레임",
+        "SUS304 / Mesh / 완제품 공급"
+      ]
+    },
+    {
+      "id": "02",
+      "title": "UV LASER 사업부",
+      "details": [
+        "Laser Cutting 미세 절단",
+        "PCB Cutting 및 가공",
+        "다양한 재질: Wafer, Sapphire, FR4, PI, PET, AL2O3 등 대응"
+      ]
+    },
+    {
+      "id": "03",
+      "title": "JIG 사업부",
+      "details": [
+        "알루미늄 보강판 (Carrier Jig)",
+        "Durostone Jig",
+        "Block Jig",
+        "Pin Jig 가공"
+      ]
+    },
+    {
+      "id": "04",
+      "title": "솔더 사업부",
+      "details": [
+        "덕산하이메탈 공식 유통",
+        "DSHM Aurora Paste PWM118 공급"
+      ]
+    }
+  ],
+  "competencies": [
+    {
+      "id": "01",
+      "title": "최신 설비 구축 & 안정성 확보",
+      "desc": "최신형 Tannlin T11 Laser 기기와 광학현미경 및 CNC 설비 2대, UV Laser를 확보하여 완벽한 품질을 실현합니다."
+    },
+    {
+      "id": "02",
+      "title": "전국 10개 지점 단납기 대응",
+      "desc": "본사 포함 국내 주요 산업단지와 해외(베트남) 네트워크를 구축하여 실시간 직가공과 퀵 배송을 보장합니다."
+    },
+    {
+      "id": "03",
+      "title": "끊임없는 기술 연구개발",
+      "desc": "용접식 단차마스크(Multi Level), PET 재질 필름마스크, 수명 연장 나노코팅 기술 등을 직접 개발하고 도입했습니다."
+    },
+    {
+      "id": "04",
+      "title": "Auto-Loader 생산성 극대화",
+      "desc": "자동 로더와 오토 스캐닝 검사 솔루션을 결합해 24시간 무인 생산 시스템을 안정적으로 가동 중입니다."
+    }
+  ]
+}

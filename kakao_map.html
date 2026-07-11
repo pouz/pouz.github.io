@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UPTech Location</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background-color: #0F172A;
+    }
+    .root_daum_roughmap {
+      width: 100% !important;
+      height: 100% !important;
+      font-family: sans-serif;
+    }
+    .root_daum_roughmap .wrap_map {
+      height: 100% !important;
+    }
+    /* Hide built-in find-road / road-view buttons in the roughmap footer */
+    .root_daum_roughmap .wrap_controllers {
+      display: none !important;
+    }
+  </style>
+  <script charset="UTF-8">
+    window.daum = window.daum || {};
+    window.daum.roughmap = {
+      phase: "prod",
+      cdn: "207038f2_1774248312945",
+      URL_KEY_DATA_LOAD_PRE: "https://t1.kakaocdn.net/roughmap/",
+      url_protocal: "https:",
+      url_cdn_domain: "//t1.kakaocdn.net"
+    };
+  </script>
+  <script charset="UTF-8" src="https://t1.kakaocdn.net/kakaomapweb/roughmap/place/prod/207038f2_1774248312945/roughmapLander.js"></script>
+</head>
+<body>
+  <div id="daumRoughmapContainer1780983484738" class="root_daum_roughmap root_daum_roughmap_landing"></div>
+  <script charset="UTF-8">
+    new daum.roughmap.Lander({
+      "timestamp" : "1780983484738",
+      "key" : "2qozgavheck4",
+      "mapWidth" : "100%",
+      "mapHeight" : "100%"
+    }).render();
+  </script>
+</body>
+</html>
