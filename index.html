@@ -67,6 +67,11 @@
     For more details:
     * https://docs.flutter.dev/platform-integration/web/initialization
   -->
+  <script>
+    window.flutterConfiguration = {
+      renderer: "auto" // 'canvaskit' 대신 기기 호환성에 맞춰 자동으로 html로 폴백되도록 설정
+    };
+  </script>
   <script src="flutter_bootstrap.js" async></script>
 </body>
 
