@@ -45,7 +45,44 @@
     body {
       font-family: 'Noto Sans KR', sans-serif;
     }
+    /* Safari WebGL Shadow DOM 합성 버그 해결: GPU 레이어 강제 생성 */
+    flutter-view, flt-glass-pane {
+      -webkit-transform: translateZ(0);
+      transform: translateZ(0);
+      will-change: transform;
+    }
   </style>
+  <script>
+    // Safari Shadow DOM 내부 canvas에 GPU 합성 레이어 강제 적용
+    (function() {
+      function fixSafariCanvasCompositing() {
+        var glassPanes = document.querySelectorAll('flt-glass-pane');
+        glassPanes.forEach(function(gp) {
+          if (gp.shadowRoot) {
+            var existingFix = gp.shadowRoot.querySelector('#safari-canvas-fix');
+            if (!existingFix) {
+              var style = document.createElement('style');
+              style.id = 'safari-canvas-fix';
+              style.textContent = 
+                'canvas { -webkit-transform: translateZ(0); transform: translateZ(0); will-change: transform; } ' +
+                'flt-canvas-container { -webkit-transform: translateZ(0); transform: translateZ(0); will-change: transform; } ' +
+                'flt-scene-host { -webkit-transform: translateZ(0); transform: translateZ(0); will-change: transform; } ' +
+                'flt-scene { -webkit-transform: translateZ(0); transform: translateZ(0); }';
+              gp.shadowRoot.appendChild(style);
+            }
+          }
+        });
+      }
+      // DOM 변경 감지하여 flt-glass-pane이 생기면 즉시 적용
+      var observer = new MutationObserver(function() {
+        fixSafariCanvasCompositing();
+      });
+      observer.observe(document.body, { childList: true, subtree: true });
+      // 폴백: 1초, 3초 후에도 재시도
+      setTimeout(fixSafariCanvasCompositing, 1000);
+      setTimeout(fixSafariCanvasCompositing, 3000);
+    })();
+  </script>
 
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-BLEDFLFCZ3"></script>
@@ -59,14 +96,6 @@
 </head>
 
 <body>
-  <!--
-    You can customize the "flutter_bootstrap.js" script.
-    This is useful to provide a custom configuration to the Flutter loader
-    or to give the user feedback during the initialization process.
-
-    For more details:
-    * https://docs.flutter.dev/platform-integration/web/initialization
-  -->
   <script src="flutter_bootstrap.js" async></script>
 </body>
 
