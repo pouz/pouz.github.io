@@ -2,6 +2,31 @@
 <html>
 
 <head>
+  <!-- GitHub Pages SPA 404 리다이렉트 복원 및 히스토리 스택 강제 빌딩 스크립트 -->
+  <script type="text/javascript">
+    (function(l) {
+      if (l.search[1] === 'p') {
+        var decoded = l.search.slice(1).split('&').map(function(s) {
+          return s.replace(/~and~/g, '&')
+        }).filter(function(s) {
+          return s.slice(0, 2) === 'p='
+        })[0];
+        if (decoded) {
+          var repoPath = l.pathname.slice(0, -1); // 예: "/uptech_copy"
+          var subPath = (decoded.slice(2) ? '/' + decoded.slice(2) : ''); // 예: "/technology/multilevel"
+          
+          // 1. 히스토리 바닥에 메인 홈 화면(/uptech_copy/)을 먼저 선언적으로 깔아둡니다.
+          window.history.replaceState(null, null, repoPath + '/');
+          
+          // 2. 그 위에 실제 진입할 서브 페이지 경로를 pushState로 적립해 얹습니다.
+          // 이로 인해 뒤로가기 스택에 홈 화면이 쌓여, 브라우저 뒤로가기 시 사이트를 나가지 않고 홈으로 복귀합니다.
+          if (subPath && subPath !== '/') {
+            window.history.pushState(null, null, repoPath + subPath + l.hash);
+          }
+        }
+      }
+    }(window.location));
+  </script>
   <!-- 서비스 워커 캐싱 정상 활성화 -->
   <!--
     If you are serving your web app in a path other than the root, change the
@@ -181,6 +206,17 @@
         }
       }
     };
+
+    // 사파리 BFCache(뒤로/앞으로가기 캐시) 복원 시 로딩창이 화면을 차단하는 현상 완전 방지
+    window.addEventListener('pageshow', function(event) {
+      if (event.persisted) {
+        var indicator = document.getElementById('loading-indicator');
+        if (indicator) {
+          indicator.style.display = 'none';
+          indicator.remove();
+        }
+      }
+    });
   </script>
 </head>
 
