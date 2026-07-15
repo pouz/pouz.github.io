@@ -19,9 +19,18 @@
   <base href="/">
 
   <meta charset="UTF-8">
-  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
   <meta content="IE=Edge" http-equiv="X-UA-Compatible">
   <meta name="description" content="유피테크 - 고정밀 SMT 메탈마스크 및 반도체 마스크 정밀 제조 전문 기업">
+  <meta name="keywords"
+    content="유피테크, UPTech, 메탈마스크, 단차마스크, SMT 메탈마스크, 반도체 마스크, 나노 코팅, 정밀 레이저 가공, 레이저 용접, 스텐실, SMT 스텐실, 스텝마스크, Step Mask, 스텝업, 스텝다운, SUS 패치, 에칭 단차마스크, 웨이퍼 마스크, 특수마스크, UV 레이저 라우팅, SMT 공정, PCB 조립, 표면실장기술, 초미세 실장 공정, 스마트 팩토리">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="유피테크 - 고정밀 SMT 메탈마스크 및 반도체 마스크 정밀 제조 전문 기업">
+  <meta property="og:description"
+    content="독자적인 단차마스크(step, multi-level)및 특수 나노 코팅 기술력을 바탕으로, 초미세 실장에 최적화된 고품질 SMT 메탈마스크와 단차마스크(Step Stencil)를 제작합니다.">
+  <meta property="og:image" content="assets/assets/logo/logo.png">
 
   <!-- iOS meta tags & icons -->
   <meta name="mobile-web-app-capable" content="yes">
@@ -49,11 +58,14 @@
       margin: 0;
       padding: 0;
     }
+
     /* Safari에서 Flutter 캔버스 뒷배경 비디오가 보이도록 전체 레이아웃 투명화 */
-    flutter-view, flt-glass-pane {
+    flutter-view,
+    flt-glass-pane {
       background: transparent !important;
       background-color: transparent !important;
     }
+
     #welding-video-bg-overlay {
       position: absolute;
       top: 0;
@@ -61,13 +73,15 @@
       width: 100%;
       height: 100%;
       pointer-events: none;
-      background-image: linear-gradient(to right, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.55) 55%, rgba(0,0,0,0.15) 100%);
+      background-image: linear-gradient(to right, rgba(0, 0, 0, 0.92) 0%, rgba(0, 0, 0, 0.55) 55%, rgba(0, 0, 0, 0.15) 100%);
     }
+
     @media (max-width: 768px) {
       #welding-video-bg-overlay {
-        background-image: linear-gradient(to bottom, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.50) 55%, rgba(0,0,0,0.15) 100%);
+        background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.50) 55%, rgba(0, 0, 0, 0.15) 100%);
       }
     }
+
     #process-video-bg-overlay {
       position: absolute;
       top: 0;
@@ -75,15 +89,16 @@
       width: 100%;
       height: 100%;
       pointer-events: none;
-      background-image: linear-gradient(to bottom, rgba(0,0,0,0.72) 0%, rgba(0,0,0,0.40) 60%, rgba(0,0,0,0.75) 100%);
+      background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.72) 0%, rgba(0, 0, 0, 0.40) 60%, rgba(0, 0, 0, 0.75) 100%);
     }
-    
+
     /* 로고 차오름 로더 디자인 */
     .logo-loader-container {
       position: relative;
       width: 140px;
       height: 140px;
     }
+
     .logo-bg {
       position: absolute;
       top: 0;
@@ -97,6 +112,7 @@
       opacity: 0.12;
       filter: grayscale(100%);
     }
+
     .logo-fill {
       position: absolute;
       top: 0;
@@ -110,33 +126,41 @@
       animation: fill-logo 2.5s cubic-bezier(0.4, 0.0, 0.2, 1) infinite;
       -webkit-animation: fill-logo 2.5s cubic-bezier(0.4, 0.0, 0.2, 1) infinite;
     }
+
     @keyframes fill-logo {
       0% {
         clip-path: inset(100% 0 0 0);
       }
+
       65% {
         clip-path: inset(0 0 0 0);
       }
+
       90% {
         clip-path: inset(0 0 0 0);
         opacity: 1;
       }
+
       100% {
         clip-path: inset(0 0 0 0);
         opacity: 0;
       }
     }
+
     @-webkit-keyframes fill-logo {
       0% {
         -webkit-clip-path: inset(100% 0 0 0);
       }
+
       65% {
         -webkit-clip-path: inset(0 0 0 0);
       }
+
       90% {
         -webkit-clip-path: inset(0 0 0 0);
         opacity: 1;
       }
+
       100% {
         -webkit-clip-path: inset(0 0 0 0);
         opacity: 0;
@@ -156,7 +180,7 @@
 
   <script>
     // Flutter 로딩 전에 미리 정의되도록 head 영역에 선언
-    window.setBgVideoVisible = function(visible) {
+    window.setBgVideoVisible = function (visible) {
       var container = document.getElementById('welding-video-bg-container');
       var video = document.getElementById('welding-video-bg');
       if (container) {
@@ -164,7 +188,7 @@
           container.style.opacity = '1';
           container.style.zIndex = '-2';
           if (video && video.paused) {
-            video.play().catch(function(e) {
+            video.play().catch(function (e) {
               console.log("Welding video play blocked/failed: ", e);
             });
           }
@@ -178,7 +202,7 @@
       }
     };
 
-    window.setProcessVideoVisible = function(visible) {
+    window.setProcessVideoVisible = function (visible) {
       var container = document.getElementById('process-video-bg-container');
       var video = document.getElementById('process-video-bg');
       if (container) {
@@ -186,7 +210,7 @@
           container.style.opacity = '1';
           container.style.zIndex = '-2';
           if (video && video.paused) {
-            video.play().catch(function(e) {
+            video.play().catch(function (e) {
               console.log("Process video play blocked/failed: ", e);
             });
           }
@@ -204,9 +228,9 @@
     function playAllVideosOnGesture() {
       var v1 = document.getElementById('welding-video-bg');
       var v2 = document.getElementById('process-video-bg');
-      if (v1 && v1.paused) v1.play().catch(function(e){});
-      if (v2 && v2.paused) v2.play().catch(function(e){});
-      
+      if (v1 && v1.paused) v1.play().catch(function (e) { });
+      if (v2 && v2.paused) v2.play().catch(function (e) { });
+
       // 일회성 실행이므로 모든 리스너 제거
       window.removeEventListener('click', playAllVideosOnGesture);
       window.removeEventListener('touchstart', playAllVideosOnGesture);
@@ -233,7 +257,7 @@
           if (!basePath.endsWith('/')) basePath = basePath + '/';
         }
       }
-      
+
       // 만약 basePath가 '/'가 아니라면 (예: 서브경로 호스팅), 절대경로를 다시 매핑해줍니다.
       if (basePath !== '/') {
         var v1 = document.getElementById('welding-video-bg');
@@ -253,7 +277,7 @@
     }
 
     // 사파리 BFCache(뒤로/앞으로가기 캐시) 복원 시 로딩창이 화면을 차단하는 현상 완전 방지
-    window.addEventListener('pageshow', function(event) {
+    window.addEventListener('pageshow', function (event) {
       if (event.persisted) {
         var indicator = document.getElementById('loading-indicator');
         if (indicator) {
@@ -267,7 +291,8 @@
 
 <body>
   <!-- 엔진 초기화 중 노출될 로고 차오름 로딩 화면 (Flutter 구동 후 JS로 제거) -->
-  <div id="loading-indicator" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: black; display: flex; flex-direction: column; justify-content: center; align-items: center; z-index: 9999; transition: opacity 0.4s ease-in-out;">
+  <div id="loading-indicator"
+    style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: black; display: flex; flex-direction: column; justify-content: center; align-items: center; z-index: 9999; transition: opacity 0.4s ease-in-out;">
     <div class="logo-loader-container">
       <div class="logo-bg"></div>
       <div class="logo-fill"></div>
@@ -275,14 +300,18 @@
   </div>
 
   <!-- 사파리 WebGL 컴포지팅 한계를 우회하기 위한 네이티브 백그라운드 비디오 레이어 (상시 display:block으로 유지하고 opacity와 z-index로 렌더 토글) -->
-  <div id="welding-video-bg-container" style="opacity: 0; position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -3; overflow: hidden; background-color: black; transition: opacity 0.4s ease-in-out;">
-    <video id="welding-video-bg" src="/assets/assets/images/welding_loop.mp4" autoplay loop muted playsinline style="width: 100%; height: 100%; object-fit: cover; border: none;"></video>
+  <div id="welding-video-bg-container"
+    style="opacity: 0; position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -3; overflow: hidden; background-color: black; transition: opacity 0.4s ease-in-out;">
+    <video id="welding-video-bg" src="/assets/assets/images/welding_loop.mp4" autoplay loop muted playsinline
+      style="width: 100%; height: 100%; object-fit: cover; border: none;"></video>
     <div id="welding-video-bg-overlay"></div>
   </div>
 
   <!-- 사파리 나노코팅 공정 화면 우회를 위한 두 번째 비디오 레이어 (상시 display:block으로 유지하고 opacity와 z-index로 렌더 토글) -->
-  <div id="process-video-bg-container" style="opacity: 0; position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -3; overflow: hidden; background-color: black; transition: opacity 0.4s ease-in-out;">
-    <video id="process-video-bg" src="/assets/assets/images/P1001438.mp4" autoplay loop muted playsinline style="width: 100%; height: 100%; object-fit: cover; border: none;"></video>
+  <div id="process-video-bg-container"
+    style="opacity: 0; position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -3; overflow: hidden; background-color: black; transition: opacity 0.4s ease-in-out;">
+    <video id="process-video-bg" src="/assets/assets/images/P1001438.mp4" autoplay loop muted playsinline
+      style="width: 100%; height: 100%; object-fit: cover; border: none;"></video>
     <div id="process-video-bg-overlay"></div>
   </div>
   <!--
