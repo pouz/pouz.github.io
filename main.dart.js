@@ -107170,7 +107170,7 @@ c3=n.c
 if(c3!=null)c3.a6(t.J).f.dI(B.a5C)
 q=3
 m="https://www.youtube.com/feeds/videos.xml?channel_id=UCi1IPAnXhuIAy3Yb-Dalmvw"
-l="https://api.rss2json.com/v1/api.json?rss_url="+A.tx(2,m,B.ar,!1)
+l="https://api.rss2json.com/v1/api.json?rss_url="+A.tx(2,m,B.ar,!1)+"&api_key=umo7qga2ttqyyl9a0gapl5ml68y13amy3xh7oyun"
 s=6
 return A.o(A.b1b(A.ef(l,0,null)),$async$lA)
 case 6:k=e3
