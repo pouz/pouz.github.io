@@ -218,6 +218,40 @@
     window.addEventListener('scroll', playAllVideosOnGesture);
     window.addEventListener('wheel', playAllVideosOnGesture);
 
+    // base href를 기반으로 비디오 src 경로를 동적으로 세팅하는 함수 (상대경로가 서브라우트에서 404 나는 현상 해결)
+    function initVideoSrcPaths() {
+      var baseElement = document.querySelector('base');
+      var basePath = '/';
+      if (baseElement) {
+        var href = baseElement.getAttribute('href');
+        if (href) {
+          basePath = href;
+          if (basePath.indexOf('$') !== -1) {
+            basePath = '/';
+          }
+          if (!basePath.startsWith('/')) basePath = '/' + basePath;
+          if (!basePath.endsWith('/')) basePath = basePath + '/';
+        }
+      }
+      
+      // 만약 basePath가 '/'가 아니라면 (예: 서브경로 호스팅), 절대경로를 다시 매핑해줍니다.
+      if (basePath !== '/') {
+        var v1 = document.getElementById('welding-video-bg');
+        if (v1) {
+          v1.src = basePath + 'assets/assets/images/welding_loop.mp4';
+        }
+        var v2 = document.getElementById('process-video-bg');
+        if (v2) {
+          v2.src = basePath + 'assets/assets/images/P1001438.mp4';
+        }
+      }
+    }
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initVideoSrcPaths);
+    } else {
+      initVideoSrcPaths();
+    }
+
     // 사파리 BFCache(뒤로/앞으로가기 캐시) 복원 시 로딩창이 화면을 차단하는 현상 완전 방지
     window.addEventListener('pageshow', function(event) {
       if (event.persisted) {
@@ -242,13 +276,13 @@
 
   <!-- 사파리 WebGL 컴포지팅 한계를 우회하기 위한 네이티브 백그라운드 비디오 레이어 (상시 display:block으로 유지하고 opacity와 z-index로 렌더 토글) -->
   <div id="welding-video-bg-container" style="opacity: 0; position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -3; overflow: hidden; background-color: black; transition: opacity 0.4s ease-in-out;">
-    <video id="welding-video-bg" src="assets/assets/images/welding_loop.mp4" autoplay loop muted playsinline style="width: 100%; height: 100%; object-fit: cover; border: none;"></video>
+    <video id="welding-video-bg" src="/assets/assets/images/welding_loop.mp4" autoplay loop muted playsinline style="width: 100%; height: 100%; object-fit: cover; border: none;"></video>
     <div id="welding-video-bg-overlay"></div>
   </div>
 
   <!-- 사파리 나노코팅 공정 화면 우회를 위한 두 번째 비디오 레이어 (상시 display:block으로 유지하고 opacity와 z-index로 렌더 토글) -->
   <div id="process-video-bg-container" style="opacity: 0; position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -3; overflow: hidden; background-color: black; transition: opacity 0.4s ease-in-out;">
-    <video id="process-video-bg" src="assets/assets/images/P1001438.mp4" autoplay loop muted playsinline style="width: 100%; height: 100%; object-fit: cover; border: none;"></video>
+    <video id="process-video-bg" src="/assets/assets/images/P1001438.mp4" autoplay loop muted playsinline style="width: 100%; height: 100%; object-fit: cover; border: none;"></video>
     <div id="process-video-bg-overlay"></div>
   </div>
   <!--
