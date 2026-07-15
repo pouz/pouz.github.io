@@ -158,29 +158,65 @@
     // Flutter 로딩 전에 미리 정의되도록 head 영역에 선언
     window.setBgVideoVisible = function(visible) {
       var container = document.getElementById('welding-video-bg-container');
+      var video = document.getElementById('welding-video-bg');
       if (container) {
         if (visible) {
           container.style.opacity = '1';
           container.style.zIndex = '-2';
+          if (video && video.paused) {
+            video.play().catch(function(e) {
+              console.log("Welding video play blocked/failed: ", e);
+            });
+          }
         } else {
           container.style.opacity = '0';
           container.style.zIndex = '-3';
+          if (video && !video.paused) {
+            video.pause();
+          }
         }
       }
     };
 
     window.setProcessVideoVisible = function(visible) {
       var container = document.getElementById('process-video-bg-container');
+      var video = document.getElementById('process-video-bg');
       if (container) {
         if (visible) {
           container.style.opacity = '1';
           container.style.zIndex = '-2';
+          if (video && video.paused) {
+            video.play().catch(function(e) {
+              console.log("Process video play blocked/failed: ", e);
+            });
+          }
         } else {
           container.style.opacity = '0';
           container.style.zIndex = '-3';
+          if (video && !video.paused) {
+            video.pause();
+          }
         }
       }
     };
+
+    // 사파리 자동재생 차단을 우회하기 위한 첫 사용자 동작(클릭/터치/스크롤) 감지 시 미디어 재생 활성화
+    function playAllVideosOnGesture() {
+      var v1 = document.getElementById('welding-video-bg');
+      var v2 = document.getElementById('process-video-bg');
+      if (v1 && v1.paused) v1.play().catch(function(e){});
+      if (v2 && v2.paused) v2.play().catch(function(e){});
+      
+      // 일회성 실행이므로 모든 리스너 제거
+      window.removeEventListener('click', playAllVideosOnGesture);
+      window.removeEventListener('touchstart', playAllVideosOnGesture);
+      window.removeEventListener('scroll', playAllVideosOnGesture);
+      window.removeEventListener('wheel', playAllVideosOnGesture);
+    }
+    window.addEventListener('click', playAllVideosOnGesture);
+    window.addEventListener('touchstart', playAllVideosOnGesture);
+    window.addEventListener('scroll', playAllVideosOnGesture);
+    window.addEventListener('wheel', playAllVideosOnGesture);
 
     // 사파리 BFCache(뒤로/앞으로가기 캐시) 복원 시 로딩창이 화면을 차단하는 현상 완전 방지
     window.addEventListener('pageshow', function(event) {
