@@ -302,7 +302,7 @@
   <!-- 사파리 WebGL 컴포지팅 한계를 우회하기 위한 네이티브 백그라운드 비디오 레이어 (상시 display:block으로 유지하고 opacity와 z-index로 렌더 토글) -->
   <div id="welding-video-bg-container"
     style="opacity: 0; position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -3; overflow: hidden; background-color: black; transition: opacity 0.4s ease-in-out;">
-    <video id="welding-video-bg" src="/assets/assets/images/welding_loop.mp4" autoplay loop muted playsinline
+    <video id="welding-video-bg" src="/assets/assets/images/welding_loop.mp4" autoplay loop muted playsinline preload="none"
       style="width: 100%; height: 100%; object-fit: cover; border: none;"></video>
     <div id="welding-video-bg-overlay"></div>
   </div>
@@ -310,7 +310,7 @@
   <!-- 사파리 나노코팅 공정 화면 우회를 위한 두 번째 비디오 레이어 (상시 display:block으로 유지하고 opacity와 z-index로 렌더 토글) -->
   <div id="process-video-bg-container"
     style="opacity: 0; position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -3; overflow: hidden; background-color: black; transition: opacity 0.4s ease-in-out;">
-    <video id="process-video-bg" src="/assets/assets/images/P1001438.mp4" autoplay loop muted playsinline
+    <video id="process-video-bg" src="/assets/assets/images/P1001438.mp4" autoplay loop muted playsinline preload="none"
       style="width: 100%; height: 100%; object-fit: cover; border: none;"></video>
     <div id="process-video-bg-overlay"></div>
   </div>

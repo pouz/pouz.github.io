@@ -1,0 +1,31 @@
+name: Auto Inquiry Post Scheduler (Business Hours & Gemini AI)
+
+on:
+  schedule:
+    # 대한민국 일과 시간대 (KST = UTC+9)에 맞춰 하루 3번의 타임슬롯 지정:
+    # 1. 오전 타임슬롯: 00:40 UTC = 한국시간 오전 09:40 KST
+    # 2. 오후 타임슬롯: 04:25 UTC = 한국시간 오후 13:25 KST
+    # 3. 퇴근전 타임슬롯: 07:50 UTC = 한국시간 오후 16:50 KST
+    - cron: '40 0 * * *'
+    - cron: '25 4 * * *'
+    - cron: '50 7 * * *'
+  workflow_dispatch: # GitHub 웹 UI에서 수동 즉시 실행 가능 버튼 제공
+
+jobs:
+  run-auto-inquiry:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: Run Gemini Auto Inquiry Generator
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          FIREBASE_PROJECT_ID: 'uptech-web-client'
+          GITHUB_EVENT_NAME: ${{ github.event_name }}
+        run: node scripts/auto_inquiry_generator.js
