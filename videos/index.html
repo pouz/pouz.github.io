@@ -322,6 +322,26 @@
     For more details:
     * https://docs.flutter.dev/platform-integration/web/initialization
   -->
+  <script>
+    // Flutter 첫 프레임 렌더링 감지 시 로고 로더를 안전하게 제거하는 함수
+    function hideLoadingIndicator() {
+      var indicator = document.getElementById('loading-indicator');
+      if (indicator) {
+        indicator.style.opacity = '0';
+        setTimeout(function () {
+          if (indicator && indicator.parentNode) {
+            indicator.parentNode.removeChild(indicator);
+          }
+        }, 400);
+      }
+    }
+
+    // 1. Flutter 첫 프레임 커스텀 이벤트 감지
+    window.addEventListener('flutter-first-frame', hideLoadingIndicator);
+
+    // 2. 네트워크 지연 및 엔진 초기화 지연 방지를 위한 2.5초 강제 제거 안전 타이머
+    setTimeout(hideLoadingIndicator, 2500);
+  </script>
   <script src="flutter_bootstrap.js" async></script>
 </body>
 
