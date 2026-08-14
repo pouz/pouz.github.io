@@ -33863,7 +33863,7 @@ case 6:f=$.b3
 n=(f==null?$.b3=$.cp():f).c1("[DEFAULT]")
 A.bN(n,$.cv(),!0)
 f=A.dr(new A.cb(n))
-f.ghr().svK(f.ghr().gvK().aBL(null,null,!1,null,null,null,null,null))
+f.ghr().svK(f.ghr().gvK().aBL(null,null,!1,null,!0,!0,null,null))
 q=1
 s=5
 break
@@ -53831,14 +53831,14 @@ r.n(0,"webExperimentalLongPollingOptions",null)
 r.n(0,"ignoreUndefinedProperties",!1)
 r.n(0,"webPersistentTabManager",s.x)
 return r},
-a3n(a,b,c,d,e,f,g,h,i){var s=this,r=d==null?s.a:d
-return new A.BB(r,s.b,s.c,s.d,c===!0,s.f,s.r,s.w,s.x)},
+a3n(a,b,c,d,e,f,g,h,i){var s=this,r=d==null?s.a:d,q=g==null?s.f:g,p=f==null?s.r:f
+return new A.BB(r,s.b,s.c,s.d,c===!0,q,p,s.w,s.x)},
 aBL(a,b,c,d,e,f,g,h){return this.a3n(a,b,null,c,d,e,f,g,h)},
 aBJ(a,b,c,d,e,f){return this.a3n(a,b,c,d,e,null,null,null,f)},
-j(a,b){var s
+j(a,b){var s,r=this
 if(b==null)return!1
 s=!1
-if(b instanceof A.BB)if(A.n(b)===A.n(this))s=b.a==this.a
+if(b instanceof A.BB)if(A.n(b)===A.n(r))if(b.a==r.a)if(b.f==r.f)s=b.r==r.r
 return s},
 gu(a){var s=this
 return A.a1(A.n(s),s.a,s.b,s.c,s.d,s.f,s.r,s.w,!1,s.x,B.a,B.a,B.a,B.a,B.a,B.a,B.a,B.a,B.a,B.a)},
@@ -53875,11 +53875,15 @@ $.dE().n(0,p,o)
 return p},
 cP(a){return A.b4s(this,this.gJ1(),a)},
 gvK(){return this.e},
-svK(a){var s,r,q=a.a
-this.e=this.e.aBJ(a.d,a.b,!1,q,a.c,a.x)
-if(q==null||!q)s=v.G.firebase_firestore.memoryLocalCache(null)
+svK(a){var s,r,q,p=a.a
+this.e=this.e.aBJ(a.d,a.b,!1,p,a.c,a.x)
+if(p==null||!p)s=v.G.firebase_firestore.memoryLocalCache(null)
 else{r=t.E.a({cacheSizeBytes:null})
-s=v.G.firebase_firestore.persistentLocalCache(r)}this.d=t.E.a({ignoreUndefinedProperties:!1,experimentalForceLongPolling:null,experimentalAutoDetectLongPolling:null,localCache:s})}}
+s=v.G.firebase_firestore.persistentLocalCache(r)}p=a.f
+if(p==null)p=null
+q=a.r
+if(q==null)q=null
+this.d=t.E.a({ignoreUndefinedProperties:!1,experimentalForceLongPolling:p,experimentalAutoDetectLongPolling:q,localCache:s})}}
 A.Ua.prototype={
 gcS(a){return this.y.a.path},
 cP(a){var s=v.G,r=this.y.a
