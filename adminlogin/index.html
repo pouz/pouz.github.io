@@ -2,7 +2,23 @@
 <html>
 
 <head>
-  <!-- 서비스 워커 캐싱 정상 활성화 -->
+  <script>
+    // 서비스 워커 및 구버전 브라우저 캐시 자동 완전 초기화 (캐시 고착 문제 원천 방지)
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.getRegistrations().then(function (registrations) {
+        for (var i = 0; i < registrations.length; i++) {
+          registrations[i].unregister();
+        }
+      });
+    }
+    if ('caches' in window) {
+      caches.keys().then(function (names) {
+        for (var i = 0; i < names.length; i++) {
+          caches.delete(names[i]);
+        }
+      });
+    }
+  </script>
   <!--
     If you are serving your web app in a path other than the root, change the
     href value below to reflect the base path you are serving from.
@@ -342,7 +358,12 @@
     // 2. 네트워크 지연 및 엔진 초기화 지연 방지를 위한 2.5초 강제 제거 안전 타이머
     setTimeout(hideLoadingIndicator, 2500);
   </script>
-  <script src="flutter_bootstrap.js" async></script>
+  <script>
+    var bootScript = document.createElement('script');
+    bootScript.src = 'flutter_bootstrap.js?v=' + new Date().getTime();
+    bootScript.async = true;
+    document.body.appendChild(bootScript);
+  </script>
 </body>
 
 </html>
